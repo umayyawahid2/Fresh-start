@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Project: Fresh Start 💌 | Step-by-Step Story</title>
+    <meta name="description" content="A step-by-step interactive journey built to make you smile, fulfill peace offerings, and start fresh.">
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="min-h-screen pb-24 relative select-none flex flex-col justify-between">
+
+    <!-- Background Canvas & Glow Blobs -->
+    <canvas id="bg-canvas"></canvas>
+    <div class="bg-blob-1"></div>
+    <div class="bg-blob-2"></div>
+
+    <!-- Header: Sticky Gauge & Controls -->
+    <header class="sticky top-0 z-40 glass-header p-3 sm:p-4 shadow-sm">
+        <div class="max-w-xl mx-auto flex items-center justify-between gap-3">
+            <div class="flex items-center gap-2">
+                <span class="font-bold text-rose-600 text-sm sm:text-base whitespace-nowrap">Forgiveness Gauge</span>
+                <span id="gauge-status-badge" class="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-blue-100 text-blue-700">Cold Shoulders 🧊</span>
+            </div>
+            
+            <div class="w-full bg-rose-100/80 h-3 rounded-full overflow-hidden p-0.5 border border-rose-200/50">
+                <div id="gauge" class="bg-gradient-to-r from-rose-400 to-rose-600 h-full w-[10%] rounded-full transition-all duration-500 ease-out gauge-bar-glow"></div>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <span id="gauge-text" class="font-bold text-rose-600 text-xs sm:text-sm min-w-[32px] text-right">10%</span>
+                <button id="sound-toggle-btn" onclick="toggleSound()" class="text-xs px-2.5 py-1 rounded-full bg-rose-100 text-rose-600 font-medium hover:bg-rose-200 transition whitespace-nowrap">
+                    🔊 Sound On
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Step Storyboard Container -->
+    <main class="max-w-xl mx-auto px-4 py-6 w-full relative z-10 my-auto">
+
+        <!-- STEP 1: Confession & Intro -->
+        <section id="step-1" class="story-step active space-y-6 text-center">
+            <div class="relative inline-block">
+                <img src="assets/images/teddy.png" alt="Cute Apology Teddy" class="w-40 h-40 sm:w-48 sm:h-48 mx-auto rounded-3xl shadow-xl object-cover border-4 border-white animate-float-soft">
+                <span class="absolute -bottom-2 -right-2 bg-white/90 backdrop-blur text-2xl p-2 rounded-2xl shadow-md border border-rose-100">💌</span>
+            </div>
+
+            <div class="space-y-3">
+                <span class="inline-block px-3 py-1 bg-rose-100/80 text-rose-600 text-xs font-bold rounded-full tracking-wide">• CONFESSION</span>
+                <h1 class="text-3xl sm:text-4xl font-extrabold text-slate-800 tracking-tight leading-tight">
+                     We Have a Problem..., I Promise To Do Better For Us.
+                </h1>
+                <p class="text-slate-600 italic text-sm sm:text-base max-w-md mx-auto leading-relaxed">
+                    (And by problem, I mean I goofed up, and I really miss my favorite person.)
+                </p>
+            </div>
+
+            <div class="pt-2">
+                <button onclick="nextStep()" class="w-full sm:w-auto bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white font-extrabold px-8 py-3.5 rounded-2xl shadow-lg shadow-rose-200 hover:scale-105 transition transform flex items-center justify-center gap-2 mx-auto">
+                    <span>Open My Apology Letter</span> 💌
+                </button>
+            </div>
+        </section>
+
+        <!-- STEP 2: From My Heart (Apology Letter) -->
+        <section id="step-2" class="story-step space-y-6">
+            <div class="text-center space-y-1">
+                <span class="inline-block px-3 py-1 bg-rose-100/80 text-rose-600 text-xs font-bold rounded-full tracking-wide">• FROM MY HEART TO MY HEART💓</span>
+                <h2 class="text-2xl font-extrabold text-slate-800">A Message For You 🕊️</h2>
+            </div>
+
+            <div class="glass-card p-6 sm:p-8 rounded-3xl space-y-4 border border-rose-100 shadow-xl">
+                <p class="font-semibold text-rose-600 text-lg">Hey love,</p>
+                <p class="text-slate-700 leading-relaxed text-sm sm:text-base">
+                    I hate being the reason you feel upset or let down. You mean the absolute world to me, and I am sincerely sorry for my mistake. No excuses—I messed up, and I want to do whatever it takes to make things right.
+                </p>
+                <p class="text-slate-700 leading-relaxed text-sm sm:text-base">
+                    I built this tiny interactive corner of the web step-by-step just for you, to put a smile back on your face.
+                </p>
+            </div>
+
+            <div class="flex justify-center pt-2">
+                <button onclick="nextStep()" class="w-full sm:w-auto bg-gradient-to-r from-rose-500 to-rose-600 text-white font-bold px-8 py-3.5 rounded-2xl shadow-lg hover:scale-105 transition transform flex items-center justify-center gap-2">
+                    <span>See 4 Reasons We're Better Together</span> 🃏
+                </button>
+            </div>
+        </section>
+
+        <!-- STEP 3: 4 Reasons Memory Polaroid Carousel -->
+        <section id="step-3" class="story-step space-y-6">
+            <div class="text-center space-y-1">
+                <span class="inline-block px-3 py-1 bg-rose-100/80 text-rose-600 text-xs font-bold rounded-full tracking-wide">• REASONS DECK</span>
+                <h2 class="text-2xl font-extrabold text-slate-800">4 Reasons We're Perfect Together 🃏</h2>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                <div class="polaroid-card" style="--rotation: -2deg;">
+                    <img src="assets/images/teddy.png" alt="Cuddles" class="w-full h-36 object-cover rounded-lg mb-3">
+                    <p class="text-xs font-bold text-rose-600 mb-1">REASON #1</p>
+                    <p class="text-xs text-slate-700 leading-snug">Boss, I'll be Your assistant for an entire month!, on your service always.</p>
+                </div>
+
+                <div class="polaroid-card" style="--rotation: 2deg;">
+                    <img src="assets/images/boba.png" alt="Boba Date" class="w-full h-36 object-cover rounded-lg mb-3">
+                    <p class="text-xs font-bold text-rose-600 mb-1">REASON #2</p>
+                    <p class="text-xs text-slate-700 leading-snug">Your favorite Boba or Coffee delivered whenever your heart desires.</p>
+                </div>
+
+                <div class="polaroid-card" style="--rotation: -1.5deg;">
+                    <img src="assets/images/movie.png" alt="Movie Control" class="w-full h-36 object-cover rounded-lg mb-3">
+                    <p class="text-xs font-bold text-rose-600 mb-1">REASON #3</p>
+                    <p class="text-xs text-slate-700 leading-snug">Your favourite movie or show!</p>
+                </div>
+
+                <div class="polaroid-card" style="--rotation: 2.5deg;">
+                    <img src="assets/images/dinner.png" alt="Candlelight Dinner" class="w-full h-36 object-cover rounded-lg mb-3">
+                    <p class="text-xs font-bold text-rose-600 mb-1">REASON #4</p>
+                    <p class="text-xs text-slate-700 leading-snug">A cozy candlelight dinner date planned entirely by me, just for you.</p>
+                </div>
+            </div>
+
+            <div class="flex justify-center pt-2">
+                <button onclick="nextStep()" class="w-full sm:w-auto bg-gradient-to-r from-rose-500 to-rose-600 text-white font-bold px-8 py-3.5 rounded-2xl shadow-lg hover:scale-105 transition transform flex items-center justify-center gap-2">
+                    <span>Claim Your Peace Offering Coupons</span> 🎟️
+                </button>
+            </div>
+        </section>
+
+        <!-- STEP 4: Peace Offering Coupons -->
+        <section id="step-4" class="story-step space-y-6">
+            <div class="text-center space-y-1">
+                <span class="inline-block px-3 py-1 bg-rose-100/80 text-rose-600 text-xs font-bold rounded-full tracking-wide">• PEACE OFFERINGS</span>
+                <h2 class="text-2xl font-extrabold text-slate-800">Claim Your Coupons 🎟️</h2>
+                <p class="text-xs text-slate-500">Tap each coupon to claim it in real life!</p>
+            </div>
+
+            <div class="grid gap-3">
+                <button onclick="claimCoupon(this, 'Free Coffee / Boba Treat 🧋', '🧋')" class="coupon-card w-full glass-card p-4 rounded-2xl text-left flex justify-between items-center group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-3xl p-2 bg-rose-50 rounded-xl">🧋</span>
+                        <div>
+                            <span class="font-bold text-rose-600 block text-sm sm:text-base">Free Coffee / Boba Treat</span>
+                            <span class="text-xs text-slate-500">Delivered directly to you with extra sweetness.</span>
+                        </div>
+                    </div>
+                    <span class="coupon-badge text-xs bg-rose-100 text-rose-600 font-bold px-3 py-1.5 rounded-lg transition whitespace-nowrap">Claim</span>
+                </button>
+
+                <button onclick="claimCoupon(this, '30-Minute Massage Session 💆‍♀️', '💆‍♀️')" class="coupon-card w-full glass-card p-4 rounded-2xl text-left flex justify-between items-center group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-3xl p-2 bg-rose-50 rounded-xl">💆‍♀️</span>
+                        <div>
+                            <span class="font-bold text-rose-600 block text-sm sm:text-base">Your favourite place to visit</span>
+                            <span class="text-xs text-slate-500">Valid anytime you need to unwind.</span>
+                        </div>
+                    </div>
+                    <span class="coupon-badge text-xs bg-rose-100 text-rose-600 font-bold px-3 py-1.5 rounded-lg transition whitespace-nowrap">Claim</span>
+                </button>
+
+                <button onclick="claimCoupon(this, 'Master of TV Remote Pass 📺', '📺')" class="coupon-card w-full glass-card p-4 rounded-2xl text-left flex justify-between items-center group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-3xl p-2 bg-rose-50 rounded-xl">📺</span>
+                        <div>
+                            <span class="font-bold text-rose-600 block text-sm sm:text-base">Master of TV Remote Pass</span>
+                            <span class="text-xs text-slate-500">No arguments on what to watch, your favourite movie and shows only.</span>
+                        </div>
+                    </div>
+                    <span class="coupon-badge text-xs bg-rose-100 text-rose-600 font-bold px-3 py-1.5 rounded-lg transition whitespace-nowrap">Claim</span>
+                </button>
+
+                <button onclick="claimCoupon(this, 'Chef\'s Dinner Night Out 🍝', '🍝')" class="coupon-card w-full glass-card p-4 rounded-2xl text-left flex justify-between items-center group">
+                    <div class="flex items-center gap-3">
+                        <span class="text-3xl p-2 bg-rose-50 rounded-xl">🍝</span>
+                        <div>
+                            <span class="font-bold text-rose-600 block text-sm sm:text-base">Chef's Dinner Night Out</span>
+                            <span class="text-xs text-slate-500">Your favorite restaurant, my treat.</span>
+                        </div>
+                    </div>
+                    <span class="coupon-badge text-xs bg-rose-100 text-rose-600 font-bold px-3 py-1.5 rounded-lg transition whitespace-nowrap">Claim</span>
+                </button>
+            </div>
+
+            <div class="flex justify-center pt-2">
+                <button onclick="nextStep()" class="w-full sm:w-auto bg-gradient-to-r from-rose-500 to-rose-600 text-white font-bold px-8 py-3.5 rounded-2xl shadow-lg hover:scale-105 transition transform flex items-center justify-center gap-2">
+                    <span>Proceed to Final Decision</span> 💕
+                </button>
+            </div>
+        </section>
+
+        <!-- STEP 5: Final Verdict & Runaway Decision -->
+        <section id="step-5" class="story-step space-y-6 text-center">
+            <div class="space-y-1">
+                <span class="inline-block px-3 py-1 bg-rose-100/80 text-rose-600 text-xs font-bold rounded-full tracking-wide">• THE VERDICT</span>
+                <h2 class="text-3xl font-extrabold text-slate-800">What do you say? 💕</h2>
+                <p class="text-xs text-slate-500">Can we hit the reset button and start fresh?</p>
+            </div>
+
+            <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 relative min-h-[70px]">
+                <button onclick="forgive()" class="w-full sm:w-auto bg-gradient-to-r from-rose-500 to-rose-600 hover:from-rose-600 hover:to-rose-700 text-white font-extrabold px-8 py-4 rounded-full shadow-lg shadow-rose-200 hover:scale-105 transition transform animate-pulse-glow flex items-center justify-center gap-2">
+                    <span>I Forgive You</span> ❤️
+                </button>
+
+                <button onclick="needIceCream()" class="w-full sm:w-auto bg-amber-50 hover:bg-amber-100 text-amber-800 border border-amber-200 font-bold px-6 py-4 rounded-full transition flex items-center justify-center gap-1.5">
+                    <span>Need Ice Cream First</span> 🍦
+                </button>
+
+                <button id="runaway-btn" onmouseover="dodgeRunawayButton()" onclick="dodgeRunawayButton()" class="w-full sm:w-auto bg-slate-200 hover:bg-slate-300 text-slate-700 font-medium px-6 py-4 rounded-full transition cursor-pointer">
+                    Still Mad 😤
+                </button>
+            </div>
+        </section>
+
+        <!-- STEP 6: Pending Obligations & Verification Lock -->
+        <section id="step-6" class="story-step space-y-6">
+            <div class="text-center space-y-1">
+                <span class="inline-block px-3 py-1 bg-amber-100 text-amber-800 text-xs font-extrabold rounded-full tracking-wide">• SUMMARY & PACT</span>
+                <h2 class="text-2xl font-extrabold text-slate-800">Peace Offerings & Promises 📋</h2>
+                <p class="text-xs text-slate-500">Review all claimed items promised by the apologiser!</p>
+            </div>
+
+            <div class="glass-card p-5 rounded-3xl space-y-3 border border-rose-100">
+                <div class="flex justify-between items-center border-b border-rose-100 pb-2.5">
+                    <span class="text-xs font-bold text-rose-600 uppercase tracking-wider">Pending Real-Life Offerings</span>
+                    <span id="pending-count-badge" class="text-xs font-bold bg-rose-100 text-rose-700 px-2.5 py-0.5 rounded-full">0 Items</span>
+                </div>
+
+                <div id="pending-coupons-list" class="space-y-2.5 max-h-60 overflow-y-auto pr-1">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </div>
+
+            <div class="glass-card p-4 rounded-2xl border border-amber-200 bg-amber-50/50 space-y-3">
+                <label class="flex items-start gap-3 cursor-pointer">
+                    <input type="checkbox" id="verify-coupons-checkbox" onchange="toggleCertificateLock()" class="w-5 h-5 mt-0.5 rounded text-rose-600 focus:ring-rose-500 accent-rose-500 cursor-pointer">
+                    <span class="text-xs sm:text-sm text-slate-700 font-semibold leading-snug">
+                        I confirm that all claimed peace offerings & ice cream requests are accepted and promised by the apologiser! 🤝
+                    </span>
+                </label>
+                <div id="print-lock-notice" class="text-xs text-amber-700 font-medium pl-8">
+                    🔒 Check the box above to verify all offerings and unlock official printing.
+                </div>
+            </div>
+
+            <div class="space-y-3 text-center">
+                <button id="print-certificate-btn" onclick="printCertificate()" disabled class="btn-locked w-full font-bold py-3.5 rounded-2xl transition flex items-center justify-center gap-2">
+                    🔒 Confirm Acceptance to Unlock Print
+                </button>
+
+                <button onclick="nextStep()" class="w-full bg-gradient-to-r from-rose-500 to-rose-600 text-white font-extrabold py-3.5 rounded-2xl shadow-lg hover:scale-105 transition transform flex items-center justify-center gap-2">
+                    <span>Continue to Tomorrow's Promise</span> 💖
+                </button>
+            </div>
+        </section>
+
+        <!-- STEP 7: Big Heart Tomorrow Promise Screen -->
+        <section id="step-7" class="story-step space-y-6 text-center">
+            <div class="text-center space-y-1">
+                <span class="inline-block px-3 py-1 bg-rose-100 text-rose-700 text-xs font-bold rounded-full tracking-wide">• OUR FOREVER PROMISE</span>
+                <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-800">Side-by-Side Forever 💖</h2>
+            </div>
+
+            <!-- Big Glowing Heart Card -->
+            <div class="big-heart-card p-8 sm:p-10 rounded-3xl text-white text-center space-y-4 shadow-2xl relative overflow-hidden my-4">
+                <div class="text-6xl sm:text-7xl animate-bounce">💖</div>
+                <blockquote class="text-lg sm:text-2xl font-extrabold leading-relaxed tracking-tight drop-shadow-md">
+                    "No matter what today brought us, I promise to face every tomorrow side-by-side with you."
+                </blockquote>
+                <div class="text-xs opacity-90 font-medium uppercase tracking-widest pt-2">
+                    — Sealed Forever in My Heart ✨
+                </div>
+            </div>
+
+            <div class="pt-2">
+                <button onclick="triggerHappyEnding()" class="w-full sm:w-auto bg-gradient-to-r from-rose-500 to-rose-600 text-white font-extrabold px-8 py-4 rounded-2xl shadow-lg shadow-rose-200 hover:scale-105 transition transform flex items-center justify-center gap-2 mx-auto">
+                    <span>Seal Pact & Trigger Happy Ending</span> 🎆✨
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom Navigation Bar -->
+    <footer class="fixed bottom-0 left-0 right-0 z-40 glass-header p-3 border-t border-rose-100 shadow-lg">
+        <div class="max-w-xl mx-auto flex items-center justify-between gap-3">
+            <button id="global-prev-btn" onclick="prevStep()" class="text-xs font-bold text-slate-600 hover:text-rose-600 bg-white/80 border border-rose-200 px-3.5 py-1.5 rounded-xl transition flex items-center gap-1 opacity-0 pointer-events-none">
+                <span>←</span> Back
+            </button>
+
+            <!-- 7 Step Dots Indicator -->
+            <div class="flex items-center gap-1">
+                <div id="step-dot-1" class="w-4 h-2 rounded-full bg-rose-500 transition-all duration-300"></div>
+                <div id="step-dot-2" class="w-2 h-2 rounded-full bg-rose-200 transition-all duration-300"></div>
+                <div id="step-dot-3" class="w-2 h-2 rounded-full bg-rose-200 transition-all duration-300"></div>
+                <div id="step-dot-4" class="w-2 h-2 rounded-full bg-rose-200 transition-all duration-300"></div>
+                <div id="step-dot-5" class="w-2 h-2 rounded-full bg-rose-200 transition-all duration-300"></div>
+                <div id="step-dot-6" class="w-2 h-2 rounded-full bg-rose-200 transition-all duration-300"></div>
+                <div id="step-dot-7" class="w-2 h-2 rounded-full bg-rose-200 transition-all duration-300"></div>
+            </div>
+
+            <span id="step-indicator-badge" class="text-xs font-bold text-rose-600 bg-rose-50 px-2.5 py-1 rounded-full border border-rose-100">
+                Step 1 of 7
+            </span>
+        </div>
+    </footer>
+
+    <!-- Modal 1: Notification Popup -->
+    <div id="modal" class="fixed inset-0 bg-slate-900/50 backdrop-blur-sm hidden flex items-center justify-center p-4 z-50">
+        <div class="glass-modal rounded-3xl p-6 sm:p-8 max-w-sm w-full text-center space-y-4 shadow-2xl border border-rose-100">
+            <div id="modal-emoji" class="text-5xl animate-bounce">🎉</div>
+            <h3 id="modal-title" class="text-2xl font-extrabold text-rose-600">YAY!</h3>
+            <p id="modal-body" class="text-slate-600 text-sm leading-relaxed"></p>
+            <button onclick="closeModal()" class="w-full bg-gradient-to-r from-rose-500 to-rose-600 text-white font-bold py-3 rounded-2xl transition shadow-md">Close</button>
+        </div>
+    </div>
+
+    <!-- Modal 2: Official Forgiveness Certificate Modal -->
+    <div id="certificate-modal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-md hidden flex items-center justify-center p-4 z-50">
+        <div class="glass-modal rounded-3xl p-6 sm:p-8 max-w-md w-full text-center space-y-6 shadow-2xl border-2 border-rose-200 relative">
+            <button onclick="closeModal('certificate-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg font-bold">✕</button>
+            
+            <div class="space-y-2">
+                <div class="text-5xl">🥰</div>
+                <span class="inline-block px-3 py-1 bg-amber-100 text-amber-800 text-xs font-extrabold rounded-full tracking-widest uppercase">Official Peace Pact</span>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-rose-600">Certificate of Forgiveness</h3>
+            </div>
+
+            <div class="bg-amber-50/80 p-5 rounded-2xl border border-amber-200/60 text-left space-y-3 relative overflow-hidden">
+                <div class="official-stamp absolute right-3 bottom-3 px-2 py-1 text-[10px] font-bold rounded">
+                    SEAL OF LOVE
+                </div>
+                <p class="text-xs text-amber-900 font-semibold uppercase tracking-wider">This certifies that:</p>
+                <p class="text-slate-800 font-medium text-sm leading-relaxed">
+                    A full and complete forgiveness has been granted for all recent goof-ups, with all rights to cuddles, laughter, and happiness officially restored!
+                </p>
+                <div class="pt-2 border-t border-amber-200/80 flex justify-between text-xs text-amber-800">
+                    <span><strong>Date:</strong> <span id="pact-date">July 25, 2026</span></span>
+                    <span><strong>Status:</strong> 100% Verified</span>
+                </div>
+            </div>
+
+            <div class="flex gap-3">
+                <button onclick="window.print()" class="w-1/2 bg-amber-600 hover:bg-amber-700 text-white font-bold py-3 rounded-xl transition text-sm shadow-md">
+                    🖨️ Print Now
+                </button>
+                <button onclick="closeModal('certificate-modal')" class="w-1/2 bg-rose-500 hover:bg-rose-600 text-white font-bold py-3 rounded-xl transition text-sm shadow-md">
+                    Yay! ❤️
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal 3: Grand Happy Ending Finale Modal -->
+    <div id="happy-ending-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md hidden flex items-center justify-center p-4 z-50 overflow-y-auto">
+        <div class="glass-modal rounded-3xl p-6 sm:p-8 max-w-md w-full text-center space-y-6 shadow-2xl border-2 border-rose-300 relative my-auto">
+            <button onclick="closeModal('happy-ending-modal')" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 text-lg font-bold">✕</button>
+
+            <div class="space-y-2 pt-2">
+                <div class="text-6xl animate-bounce inline-block">🌹💖✨</div>
+                <span class="inline-block px-3.5 py-1 bg-rose-100 text-rose-700 text-xs font-extrabold rounded-full tracking-widest uppercase">The Happy Ending</span>
+                <h3 class="text-2xl sm:text-3xl font-extrabold text-slate-800">Together Forever!</h3>
+            </div>
+
+            <div class="glass-card p-5 rounded-2xl border border-rose-200 text-slate-700 text-sm leading-relaxed space-y-3">
+                <p class="font-semibold text-rose-600 text-base">"No matter what today brought us, I promise to face every tomorrow side-by-side with you."</p>
+                <p class="text-xs sm:text-sm text-slate-600">
+                    Here's to fresh starts, warmer hugs, delicious Boba dates, and endless smiles together!
+                </p>
+
+                <div class="pt-3 border-t border-rose-100 space-y-2">
+                    <p class="text-xs font-bold text-rose-600 uppercase tracking-wider">Sign Your Fresh Start Pact</p>
+                    <div class="grid grid-cols-2 gap-2 text-left">
+                        <div>
+                            <label class="text-[10px] font-bold text-slate-500 block">Forgiver Name:</label>
+                            <input type="text" id="pact-lover-name" placeholder="Name" class="w-full text-xs p-2 rounded-lg border border-rose-200 bg-white focus:outline-none focus:border-rose-400 font-bold text-slate-800">
+                        </div>
+                        <div>
+                            <label class="text-[10px] font-bold text-slate-500 block">Apologiser Name:</label>
+                            <input type="text" id="pact-apologizer-name" placeholder="Name" class="w-full text-xs p-2 rounded-lg border border-rose-200 bg-white focus:outline-none focus:border-rose-400 font-bold text-slate-800">
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="p-4 bg-gradient-to-r from-rose-500 to-rose-600 text-white rounded-2xl shadow-lg space-y-1">
+                <p class="text-xs font-bold opacity-90 uppercase tracking-widest">OFFICIALLY SIGNED PACT</p>
+                <p class="text-sm font-extrabold">
+                    <span id="final-lover-display">My Favorite Person</span> & <span id="final-apologizer-display">Me</span>
+                </p>
+                <p class="text-[11px] opacity-80">Fresh Start Sealed with Love ❤️</p>
+            </div>
+
+            <button onclick="closeModal('happy-ending-modal')" class="w-full bg-slate-900 hover:bg-slate-800 text-white font-bold py-3.5 rounded-2xl transition shadow-md text-sm">
+                Close & Enjoy Our Fresh Start! 💕
+            </button>
+        </div>
+    </div>
+
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Custom JavaScript Engine -->
+    <script src="assets/js/script.js"></script>
+</body>
+</html>

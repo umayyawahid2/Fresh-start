@@ -1,0 +1,273 @@
+/* ==========================================================================
+   Project Fresh Start 💌 - Step-by-Step Multi-Screen Story CSS
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap');
+
+:root {
+    --font-heading: 'Outfit', sans-serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --primary-rose: #f43f5e;
+    --primary-rose-light: #fff1f2;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: #fff5f6;
+    color: #1e293b;
+    overflow-x: hidden;
+    min-height: 100vh;
+}
+
+h1, h2, h3, h4, .font-heading {
+    font-family: var(--font-heading);
+}
+
+/* Background Canvas Particles */
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 0;
+}
+
+/* Glassmorphism Elements */
+.glass-card {
+    background: rgba(255, 255, 255, 0.88);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid rgba(253, 226, 228, 0.9);
+    box-shadow: 0 10px 30px -5px rgba(244, 63, 94, 0.08), 0 4px 12px -2px rgba(0, 0, 0, 0.03);
+}
+
+.glass-header {
+    background: rgba(255, 255, 255, 0.92);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-bottom: 1px solid rgba(254, 205, 211, 0.7);
+}
+
+.glass-modal {
+    background: rgba(255, 255, 255, 0.96);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+}
+
+/* Step Screen Containers & Transitions */
+.story-step {
+    display: none;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    width: 100%;
+}
+
+.story-step.active {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Slide Transition Keyframes */
+@keyframes slideInRight {
+    from { opacity: 0; transform: translateX(40px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+@keyframes slideOutLeft {
+    from { opacity: 1; transform: translateX(0); }
+    to { opacity: 0; transform: translateX(-40px); }
+}
+
+@keyframes slideInLeft {
+    from { opacity: 0; transform: translateX(-40px); }
+    to { opacity: 1; transform: translateX(0); }
+}
+
+.animate-slide-in-right {
+    animation: slideInRight 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+.animate-slide-in-left {
+    animation: slideInLeft 0.45s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+}
+
+/* Big Heart Tomorrow Promise Styling */
+.big-heart-card {
+    background: linear-gradient(135deg, rgba(244, 63, 94, 0.95) 0%, rgba(225, 29, 72, 0.95) 100%);
+    box-shadow: 0 20px 40px -10px rgba(244, 63, 94, 0.4), 0 0 30px rgba(251, 113, 133, 0.3);
+    border: 3px solid rgba(255, 255, 255, 0.4);
+    animation: heart-beat 3.5s ease-in-out infinite;
+}
+
+@keyframes heart-beat {
+    0%, 100% { transform: scale(1); box-shadow: 0 20px 40px -10px rgba(244, 63, 94, 0.4); }
+    50% { transform: scale(1.03); box-shadow: 0 25px 50px -5px rgba(244, 63, 94, 0.6), 0 0 40px rgba(251, 113, 133, 0.5); }
+}
+
+/* Ambient Glow Blobs */
+.bg-blob-1 {
+    position: fixed;
+    top: -10%;
+    left: -10%;
+    width: 45vw;
+    height: 45vw;
+    max-width: 500px;
+    max-height: 500px;
+    background: radial-gradient(circle, rgba(254, 205, 211, 0.7) 0%, rgba(255, 241, 242, 0) 70%);
+    filter: blur(40px);
+    z-index: -1;
+    animation: blob-float 12s ease-in-out infinite alternate;
+}
+
+.bg-blob-2 {
+    position: fixed;
+    bottom: -10%;
+    right: -10%;
+    width: 50vw;
+    height: 50vw;
+    max-width: 550px;
+    max-height: 550px;
+    background: radial-gradient(circle, rgba(251, 207, 232, 0.6) 0%, rgba(255, 241, 242, 0) 70%);
+    filter: blur(50px);
+    z-index: -1;
+    animation: blob-float 15s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes blob-float {
+    0% { transform: translate(0, 0) scale(1); }
+    100% { transform: translate(30px, 30px) scale(1.1); }
+}
+
+/* Floating Animations */
+@keyframes float-soft {
+    0%, 100% { transform: translateY(0px) rotate(0deg); }
+    50% { transform: translateY(-10px) rotate(2deg); }
+}
+
+.animate-float-soft {
+    animation: float-soft 4s ease-in-out infinite;
+}
+
+@keyframes pulse-glow {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(244, 63, 94, 0.4); }
+    50% { box-shadow: 0 0 0 14px rgba(244, 63, 94, 0); }
+}
+
+.animate-pulse-glow {
+    animation: pulse-glow 2.5s infinite;
+}
+
+/* Polaroid Card Styling */
+.polaroid-card {
+    background: #ffffff;
+    padding: 12px 12px 18px 12px;
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1), 0 4px 10px -2px rgba(0, 0, 0, 0.04);
+    border-radius: 14px;
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: rotate(var(--rotation, 0deg));
+}
+
+.polaroid-card:hover {
+    transform: translateY(-8px) scale(1.03) rotate(0deg) !important;
+    box-shadow: 0 20px 35px -10px rgba(244, 63, 94, 0.25);
+    z-index: 10;
+}
+
+/* Runaway Button Smooth Transition */
+#runaway-btn {
+    transition: all 0.25s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    will-change: transform, left, top;
+}
+
+/* Forgiveness Gauge Glow */
+.gauge-bar-glow {
+    box-shadow: 0 0 12px rgba(244, 63, 94, 0.6);
+}
+
+/* Stamp Effect for Certificate */
+.official-stamp {
+    border: 3px double #d97706;
+    color: #b45309;
+    font-family: var(--font-heading);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    transform: rotate(-12deg);
+    box-shadow: 0 0 0 4px rgba(217, 119, 6, 0.15);
+}
+
+/* Coupon Card Styling */
+.coupon-card {
+    border: 2px dashed #fda4af;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+.coupon-card::before, .coupon-card::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    background-color: #fff5f6;
+    border-radius: 50%;
+    transform: translateY(-50%);
+    border: 1px solid #fda4af;
+}
+
+.coupon-card::before { left: -9px; }
+.coupon-card::after { right: -9px; }
+
+.coupon-card:hover {
+    border-color: #f43f5e;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 20px -5px rgba(244, 63, 94, 0.15);
+}
+
+/* Print Lock & Verification Styles */
+.btn-locked {
+    background-color: #e2e8f0 !important;
+    color: #94a3b8 !important;
+    cursor: not-allowed !important;
+    box-shadow: none !important;
+    border: 1px solid #cbd5e1 !important;
+}
+
+.btn-unlocked {
+    background: linear-gradient(135deg, #d97706 0%, #b45309 100%) !important;
+    color: #ffffff !important;
+    box-shadow: 0 10px 25px -5px rgba(217, 119, 6, 0.4) !important;
+    animation: pulse-glow-gold 2s infinite;
+}
+
+@keyframes pulse-glow-gold {
+    0%, 100% { box-shadow: 0 0 0 0 rgba(217, 119, 6, 0.4); }
+    50% { box-shadow: 0 0 0 12px rgba(217, 119, 6, 0); }
+}
+
+/* Pending Coupon Badges */
+.pending-item-card {
+    background: #ffffff;
+    border: 1px solid #fecdd3;
+    border-left: 4px solid #f43f5e;
+    box-shadow: 0 4px 12px rgba(244, 63, 94, 0.05);
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: #fff1f2;
+}
+::-webkit-scrollbar-thumb {
+    background: #fda4af;
+    border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+    background: #f43f5e;
+}
